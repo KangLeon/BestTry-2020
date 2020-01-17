@@ -1,0 +1,6 @@
+framework module Pods_TestScrollViewOC {
+  umbrella header "Pods-TestScrollViewOC-umbrella.h"
+
+  export *
+  module * { export * }
+}
