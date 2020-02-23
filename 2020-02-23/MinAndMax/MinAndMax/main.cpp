@@ -36,7 +36,7 @@ int main(int argc, const char * argv[]) {
     int arr1[4] = {3,5,1,7};
     bool isMax = false;
     cin >> isMax;
-    cout << CompanyA::getMaxOrMin(arr1, 4,  ) << endl;
+    cout << CompanyA::getMaxOrMin(arr1, 4, isMax) << endl;
     
 //    system("pause");
     return 0;
