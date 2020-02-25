@@ -8,16 +8,12 @@
 
 #include "Teacher.hpp"
 
-Teacher::Teacher(){
-    m_strName = "Jim";
-    m_iAge = 5;
-    cout << "Teacher()" << endl;
+Teacher::Teacher(string name, int age, int m):m_strName(name),m_iAge(age),m_iMax(m){
+    cout << "Teacher(string name, int age)" << endl;
 }
 
-Teacher::Teacher(string name, int age = 10){
-    m_strName=name;
-    m_iAge = age;
-    cout << "Teacher(string name, int age)" << endl;
+int Teacher::getMax(){
+    return m_iMax;
 }
 
 void Teacher::setName(string _name){
