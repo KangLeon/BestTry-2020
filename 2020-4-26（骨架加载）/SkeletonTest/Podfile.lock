@@ -1,0 +1,25 @@
+PODS:
+  - Masonry (1.1.0)
+  - TABAnimated (2.2.5):
+    - TABAnimated/Core (= 2.2.5)
+    - TABAnimated/Reveal (= 2.2.5)
+  - TABAnimated/Core (2.2.5)
+  - TABAnimated/Reveal (2.2.5):
+    - TABAnimated/Core
+
+DEPENDENCIES:
+  - Masonry (~> 1.1.0)
+  - TABAnimated (~> 2.2.5)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs:
+    - Masonry
+    - TABAnimated
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  TABAnimated: 578e519350a12ac08ec2ee2c0a2d2120ac13e137
+
+PODFILE CHECKSUM: 805556c5671390762cb282e520c47882bab63ef9
+
+COCOAPODS: 1.9.1
