@@ -1,0 +1,6 @@
+framework module Pods_SkeletonViewOC {
+  umbrella header "Pods-SkeletonViewOC-umbrella.h"
+
+  export *
+  module * { export * }
+}
