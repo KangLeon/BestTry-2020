@@ -15,6 +15,7 @@
 		0A1316742455C1410075DEC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A1316722455C1410075DEC3 /* LaunchScreen.storyboard */; };
 		0A1316772455C1410075DEC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1316762455C1410075DEC3 /* main.m */; };
 		0A13167F2455C7BD0075DEC3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A1316812455C7BD0075DEC3 /* Localizable.strings */; };
+		0A17CE972456864F00A6B4D7 /* Localizable.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A17CE962456864F00A6B4D7 /* Localizable.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		0A1316822455C8150075DEC3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		0A1316832455C8150075DEC3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		0A1316842455C8150075DEC3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		0A17CE962456864F00A6B4D7 /* Localizable.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Localizable.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 				0A1316722455C1410075DEC3 /* LaunchScreen.storyboard */,
 				0A1316752455C1410075DEC3 /* Info.plist */,
 				0A1316762455C1410075DEC3 /* main.m */,
+				0A17CE962456864F00A6B4D7 /* Localizable.bundle */,
 			);
 			path = Localized;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				0A13167F2455C7BD0075DEC3 /* Localizable.strings in Resources */,
 				0A1316712455C1410075DEC3 /* Assets.xcassets in Resources */,
 				0A13166F2455C13E0075DEC3 /* Main.storyboard in Resources */,
+				0A17CE972456864F00A6B4D7 /* Localizable.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
