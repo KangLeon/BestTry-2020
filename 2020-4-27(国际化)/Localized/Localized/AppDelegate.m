@@ -17,6 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    NSString *string1=[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"][0];
+    
     return YES;
 }
 
