@@ -8,7 +8,52 @@
 
 #import "GirlView.h"
 
+@interface GirlView ()
+@property(nonatomic,strong)UIImageView *avatar_imageView;
+@property(nonatomic,strong)UIView *mask_view;
+@property(nonatomic,strong)UIButton *like_button;
+@property(nonatomic,strong)UIButton *dislike_button;
+@property(nonatomic,strong)UIView *backBar_view;
+@property(nonatomic,strong)UILabel *title_label;
+@property(nonatomic,strong)UILabel *sex_label;
+@property(nonatomic,strong)UILabel *info_label;
+@property(nonatomic,strong)UILabel *descri_label;
+@end
+
 @implementation GirlView
+-(instancetype)initWithFrame:(CGRect)frame{
+    if (self=[super initWithFrame:frame]) {
+        
+    }
+    return self;
+}
+#pragma mark -- 添加UI
+-(void)addUI{
+    [self addSubview:self.avatar_imageView];
+    [self addSubview:self.like_button];
+    [self addSubview:self.dislike_button];
+    [self addSubview:self.title_label];
+    [self addSubview:self.backBar_view];
+    [self addSubview:self.sex_label];
+    [self addSubview:self.info_label];
+    [self addSubview:self.descri_label];
+    [self addSubview:self.mask_view];
+    
+    [self updateConstraintsIfNeeded];
+}
+#pragma mark -- 懒加载
+
+#pragma mark -- 代理
+
+#pragma mark -- taget action
+
+#pragma mark -- 布局
+
+#pragma mark -- 网络请求
+
+#pragma mark -- 工具方法
+
+#pragma mark -- 生命周期方法
 
 /*
 // Only override drawRect: if you perform custom drawing.
