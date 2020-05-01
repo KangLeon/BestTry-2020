@@ -180,45 +180,60 @@
         NSLog(@"正在拖动");
         CGPoint transLcation = [pan translationInView:imageView];
         imageView.center = CGPointMake(imageView.center.x + transLcation.x, imageView.center.y + transLcation.y);
+        imageView.backgroundColor=[UIColor blackColor];
         CGFloat XOffPercent = (imageView.center.x-ScreenW/2.0)/(ScreenW/2.0);
         CGFloat rotation = M_PI_2/10*XOffPercent;
         imageView.transform = CGAffineTransformMakeRotation(rotation);
         [pan setTranslation:CGPointZero inView:imageView];
-
+        
+        //1.改变透明度
+        imageView.alpha=1-fabs((imageView.center.x-ScreenW/2.0)/ScreenW);
+        //2.添加like和dislike图标
+        
         [self animationBlowViewWithXOffPercent:fabs(XOffPercent)];
     }else if (pan.state == UIGestureRecognizerStateEnded) {
-        NSLog(@"拖动结束");
-        //视图在屏幕左侧移除
-        if (imageView.center.x < ScreenW/2) {
-            [UIView animateWithDuration:Animation_time animations:^{
-                imageView.center = CGPointMake(-ScreenW/2, imageView.center.y);
-            }];
-        } else{//视图在屏幕右侧移除
-            [UIView animateWithDuration:Animation_time animations:^{
-                imageView.center = CGPointMake(ScreenW+ScreenW/2, imageView.center.y);
-            }];
+        //视图不移除，原路返回
+        if (fabs(imageView.center.x-ScreenW/2) < 60) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    imageView.center = CGPointMake(ScreenW/2.0, ScreenH/2.0);
+                    imageView.transform = CGAffineTransformMakeRotation(0);
+                    [self animationBlowViewWithXOffPercent:0];
+                }];
+            }else{
+                
+                //视图在屏幕左侧移除
+                if (imageView.center.x < ScreenW/2) {
+                    [UIView animateWithDuration:0.25 animations:^{
+                        imageView.center = CGPointMake(-ScreenW/2, imageView.center.y);
+                    }];
+                    
+                } else{//视图在屏幕右侧移除
+                    [UIView animateWithDuration:0.25 animations:^{
+                        imageView.center = CGPointMake(ScreenW+ScreenW/2, imageView.center.y);
+                    }];
+                }
+                
+                [self animationBlowViewWithXOffPercent:1];
+                [self performSelector:@selector(cardRemove) withObject:imageView afterDelay:Animation_time];
+            }
         }
-
-        [self animationBlowViewWithXOffPercent:1];
-
-        [self performSelector:@selector(cardRemove) withObject:imageView afterDelay:Animation_time];
-    }
 }
 - (void)animationBlowViewWithXOffPercent:(CGFloat)XOffPercent {
-    for (UIImageView *imageView in self.picture_array) {
-        if (imageView != self.topCard && imageView.tag != 103) {
-            NSInteger index = imageView.tag-100;
-            imageView.center = CGPointMake(ScreenW/2,ScreenH/2
-                                      + (ImageHeight*ImageScale*index/2)
-                                      + ImageSpace*index  //上面3行是原始位置，下面2行是改变的大小
-                                      - XOffPercent*ImageSpace
-                                      - (ImageHeight*ImageScale*index/2)*XOffPercent/index);
-
-            CGFloat scale = 1-ImageScale*index + XOffPercent*ImageScale;
-            imageView.transform = CGAffineTransformMakeScale(scale, scale);
-        }
-    }
-    
+    [UIView animateWithDuration:0.45 animations:^{
+            for (UIImageView *imageView in self.picture_array) {
+                if (imageView != self.topCard && imageView.tag != 103) {
+                    NSInteger index = imageView.tag-100;
+                    imageView.center = CGPointMake(ScreenW/2,ScreenH/2
+                                              + (ImageHeight*ImageScale*index/2)
+                                              + ImageSpace*index  //上面3行是原始位置，下面2行是改变的大小
+                                              - XOffPercent*ImageSpace
+                                              - (ImageHeight*ImageScale*index/2)*XOffPercent/index);
+        
+                    CGFloat scale = 1-ImageScale*index + XOffPercent*ImageScale;
+                    imageView.transform = CGAffineTransformMakeScale(scale, scale);
+                }
+            }
+    }];
 }
 -(void)cardRemove{
     
