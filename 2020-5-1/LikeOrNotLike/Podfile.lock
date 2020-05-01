@@ -1,0 +1,30 @@
+PODS:
+  - Masonry (1.1.0)
+  - SDWebImage (5.7.2):
+    - SDWebImage/Core (= 5.7.2)
+  - SDWebImage/Core (5.7.2)
+  - TABCardView (0.0.1)
+  - ZLSwipeableView (0.0.8)
+
+DEPENDENCIES:
+  - Masonry (~> 1.1.0)
+  - SDWebImage (~> 5.7.2)
+  - TABCardView (~> 0.0.1)
+  - ZLSwipeableView (~> 0.0.8)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs:
+    - Masonry
+    - SDWebImage
+    - TABCardView
+    - ZLSwipeableView
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
+  TABCardView: 54497de95f3205b89fda472b2d34115e310e7292
+  ZLSwipeableView: df385760ff4838935cdbcb62878ac5acd7355949
+
+PODFILE CHECKSUM: 3839f1285f605d4f82d905ec496c6fe11952f8be
+
+COCOAPODS: 1.9.1

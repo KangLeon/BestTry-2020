@@ -1,0 +1,6 @@
+framework module TABCardView {
+  umbrella header "TABCardView-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-LikeOrNotLike/Pods-LikeOrNotLike-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/TABCardView/TABCardView.framework
+${BUILT_PRODUCTS_DIR}/ZLSwipeableView/ZLSwipeableView.framework

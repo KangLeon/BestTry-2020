@@ -21,6 +21,10 @@
 		0A79DEFF245BE00D00103455 /* 图片4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A79DEFB245BE00D00103455 /* 图片4.png */; };
 		0A79DF01245BE07800103455 /* 不喜欢.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A79DF00245BE07800103455 /* 不喜欢.png */; };
 		0A79DF03245BE07E00103455 /* 喜欢.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A79DF02245BE07E00103455 /* 喜欢.png */; };
+		0ADF15D2245C10F400594BAE /* 图片2.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF15CF245C10F300594BAE /* 图片2.png */; };
+		0ADF15D3245C10F400594BAE /* 图片3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF15D0245C10F400594BAE /* 图片3.png */; };
+		0ADF15D4245C10F400594BAE /* 图片4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF15D1245C10F400594BAE /* 图片4.png */; };
+		0ADF15D6245C10FE00594BAE /* 图片1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF15D5245C10FE00594BAE /* 图片1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +49,10 @@
 		0A79DEFB245BE00D00103455 /* 图片4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片4.png"; sourceTree = "<group>"; };
 		0A79DF00245BE07800103455 /* 不喜欢.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "不喜欢.png"; sourceTree = "<group>"; };
 		0A79DF02245BE07E00103455 /* 喜欢.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "喜欢.png"; sourceTree = "<group>"; };
+		0ADF15CF245C10F300594BAE /* 图片2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片2.png"; sourceTree = "<group>"; };
+		0ADF15D0245C10F400594BAE /* 图片3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片3.png"; sourceTree = "<group>"; };
+		0ADF15D1245C10F400594BAE /* 图片4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片4.png"; sourceTree = "<group>"; };
+		0ADF15D5245C10FE00594BAE /* 图片1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片1.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,10 @@
 			isa = PBXGroup;
 			children = (
 				0A79DEF7245BDD6200103455 /* LookSomeBody.entitlements */,
+				0ADF15CF245C10F300594BAE /* 图片2.png */,
+				0ADF15D5245C10FE00594BAE /* 图片1.png */,
+				0ADF15D0245C10F400594BAE /* 图片3.png */,
+				0ADF15D1245C10F400594BAE /* 图片4.png */,
 				0A79DEF9245BE00D00103455 /* 图片1.png */,
 				0A79DEFA245BE00D00103455 /* 图片2.png */,
 				0A79DEF8245BE00D00103455 /* 图片3.png */,
@@ -161,8 +173,12 @@
 				0A79DED7245BCE8600103455 /* LaunchScreen.storyboard in Resources */,
 				0A79DEFD245BE00D00103455 /* 图片1.png in Resources */,
 				0A79DED4245BCE8600103455 /* Assets.xcassets in Resources */,
+				0ADF15D4245C10F400594BAE /* 图片4.png in Resources */,
 				0A79DEFF245BE00D00103455 /* 图片4.png in Resources */,
+				0ADF15D6245C10FE00594BAE /* 图片1.png in Resources */,
 				0A79DEFE245BE00D00103455 /* 图片2.png in Resources */,
+				0ADF15D2245C10F400594BAE /* 图片2.png in Resources */,
+				0ADF15D3245C10F400594BAE /* 图片3.png in Resources */,
 				0A79DF01245BE07800103455 /* 不喜欢.png in Resources */,
 				0A79DEFC245BE00D00103455 /* 图片3.png in Resources */,
 				0A79DED2245BCE8300103455 /* Main.storyboard in Resources */,

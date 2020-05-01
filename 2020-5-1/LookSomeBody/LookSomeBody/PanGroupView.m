@@ -40,39 +40,15 @@
 }
 #pragma mark -- 添加UI
 -(void)addUI{
-//    self.data_array=[NSMutableArray arrayWithObjects:@"图片1.png",@"图片2.png",@"图片3.png",@"图片4.png", nil];
+    self.data_array=[NSMutableArray arrayWithObjects:@"图片1.png",@"图片2.png",@"图片3.png",@"图片4.png", nil];
     
     //添加视图
     for (int i=0; i<4; i++) {
         UIImageView *imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, ImageWidth, ImageHeight)];
         imageView.contentMode=UIViewContentModeScaleAspectFill;
-        switch (i) {
-            case 0:
-            {
-                imageView.backgroundColor=[UIColor redColor];
-            }
-                break;
-            case 1:
-                {
-                    imageView.backgroundColor=[UIColor blueColor];
-                }
-                    break;
-                case 2:
-                {
-                    imageView.backgroundColor=[UIColor greenColor];
-                }
-                    break;
-                case 3:
-                {
-                    imageView.backgroundColor=[UIColor yellowColor];
-                }
-                    break;
-            default:
-                break;
-        }
         
-//        UIImage *image=[UIImage imageNamed:self.data_array[i]];
-//        imageView.image=image;
+        UIImage *image=[UIImage imageNamed:self.data_array[i]];
+        imageView.image=image;
         
         imageView.tag = 100 + i;
         
@@ -105,18 +81,17 @@
     
     
     //喜欢和不喜欢按钮
-    UIButton *dislike_button=[[UIButton alloc] initWithFrame:CGRectMake(100, 800, 50, 50)];
-    dislike_button.backgroundColor=[UIColor clearColor];
-    [dislike_button addTarget:self action:@selector(tapGes) forControlEvents:UIControlEventTouchUpInside];
-    [dislike_button setImage:[UIImage imageNamed:@"不喜欢"] forState:UIControlStateNormal];
-    [self addSubview:dislike_button];
-    
-    UIButton *like_button=[[UIButton alloc] initWithFrame:CGRectMake(250, 800, 50, 50)];
+    UIButton *like_button=[[UIButton alloc] initWithFrame:CGRectMake(100, 800, 50, 50)];
     like_button.backgroundColor=[UIColor clearColor];
     [like_button setImage:[UIImage imageNamed:@"喜欢"] forState:UIControlStateNormal];
-    [like_button addTarget:self action:@selector(tapGes) forControlEvents:UIControlEventTouchUpInside];
+    [like_button addTarget:self action:@selector(likeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:like_button];
     
+    UIButton *dislike_button=[[UIButton alloc] initWithFrame:CGRectMake(250, 800, 50, 50)];
+    dislike_button.backgroundColor=[UIColor clearColor];
+    [dislike_button addTarget:self action:@selector(cancelBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [dislike_button setImage:[UIImage imageNamed:@"不喜欢"] forState:UIControlStateNormal];
+    [self addSubview:dislike_button];
 }
 #pragma mark -- 懒加载
 -(NSMutableArray *)data_array{
@@ -135,6 +110,67 @@
 #pragma mark -- 代理
 
 #pragma mark -- taget action
+//返回，出现上张图片
+- (void)cancelBtnClick:(UIButton *)sender {
+    
+    sender.userInteractionEnabled = NO;
+    [UIView animateWithDuration:0.1 animations:^{
+        //前摇
+        self.topCard.center = CGPointMake(ScreenW/2 - 5, ScreenH/2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.topCard.center = CGPointMake(ImageWidth+ScreenW, ScreenH/2+50);
+            self.topCard.transform = CGAffineTransformMakeRotation(M_PI_4/2);
+            for (UIImageView *imageView in self.picture_array) {
+                if (imageView.tag != 100 && imageView.tag != 103) {
+                    NSInteger index = imageView.tag - 100;
+                    imageView.center = CGPointMake(ScreenW/2, ScreenH/2
+                                              + ImageHeight*index*ImageScale/2
+                                              + ImageSpace*index //原始位置
+                                              - ImageSpace
+                                              - (ImageHeight*ImageScale*index/2)/index);
+
+                    CGFloat scale = 1-index*ImageScale + ImageScale;
+                    imageView.transform = CGAffineTransformMakeScale(scale, scale);
+                }
+            }
+        }completion:^(BOOL finished) {
+            sender.userInteractionEnabled = YES;
+            [self cardRemove];
+        }];
+    }];
+}
+
+//喜欢
+- (void)likeBtnClick:(UIButton *)sender {
+
+    sender.userInteractionEnabled = NO;
+    
+    [UIView animateWithDuration:0.1 animations:^{
+        //前摇
+        self.topCard.center = CGPointMake(ScreenW/2 + 5, ScreenH/2);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.topCard.center = CGPointMake(-ImageWidth, ScreenH/2+50);
+            self.topCard.transform = CGAffineTransformMakeRotation(-M_PI_4/2);
+            for (UIImageView *imageView in self.picture_array) {
+                if (imageView.tag != 100 && imageView.tag != 103) {
+                    NSInteger index = imageView.tag - 100;
+                    imageView.center = CGPointMake(ScreenW/2, ScreenH/2
+                                              + ImageHeight*index*ImageScale/2
+                                              + ImageSpace*index //原始位置
+                                              - ImageSpace
+                                              - (ImageHeight*ImageScale*index/2)/index);
+                    CGFloat scale = 1-index*ImageScale + ImageScale;
+                    imageView.transform = CGAffineTransformMakeScale(scale, scale);
+                }
+            }
+        }completion:^(BOOL finished) {
+            sender.userInteractionEnabled = YES;
+            [self cardRemove];
+        }];
+    }];
+}
 -(void)panHandle:(UIPanGestureRecognizer *)pan{
     UIImageView *imageView = (UIImageView *)pan.view;
 
