@@ -50,7 +50,6 @@
         UIImage *image=[UIImage imageNamed:self.data_array[i]];
         imageView.image=image;
         imageView.userInteractionEnabled = YES;
-        imageView.tag = 100 + i;
         
         //确定缩放系数
         int index = i;
@@ -184,7 +183,7 @@
         CGPoint transLcation = [pan translationInView:imageView];
         imageView.center = CGPointMake(imageView.center.x + transLcation.x, imageView.center.y + transLcation.y);
         imageView.backgroundColor=[UIColor blackColor];
-        NSLog(@"正在拖动的图片是:%ld",imageView.tag);
+        
         //确定拖动百分比
         CGFloat XOffPercent = (imageView.center.x-ScreenW/2.0)/(ScreenW/2.0);
         //确定旋转角度
@@ -201,26 +200,28 @@
         [self animationBlowViewWithXOffPercent:fabs(XOffPercent)];
     }else if (pan.state == UIGestureRecognizerStateEnded) {
         //视图不移除，原路返回
-        if (fabs(imageView.center.x-ScreenW/2) < 60) {
+        if (fabs(imageView.center.x-ScreenW/2) < 30) {
                 [UIView animateWithDuration:Animation_time animations:^{
-                    imageView.center = CGPointMake(ScreenW/2.0, ScreenH/2.0);
-                    imageView.transform = CGAffineTransformMakeRotation(0);
-                    [self animationBlowViewWithXOffPercent:0];
+//                    imageView.center = CGPointMake(ScreenW/2.0, ScreenH/2.0);
+//                    imageView.transform = CGAffineTransformMakeRotation(0);
+//                    [self animationBlowViewWithXOffPercent:0];
+                } completion:^(BOOL finished) {
                 }];
             }else{
-                
                 //视图在屏幕左侧移除
                 if (imageView.center.x < ScreenW/2) {
-                    [UIView animateWithDuration:Animation_time animations:^{
+                    [UIView animateWithDuration:Animation_time delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
                         imageView.center = CGPointMake(-ScreenW/2, imageView.center.y);
+                    } completion:^(BOOL finished) {
+                        
                     }];
-                    
                 } else{//视图在屏幕右侧移除
-                    [UIView animateWithDuration:Animation_time animations:^{
+                    [UIView animateWithDuration:Animation_time delay:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
                         imageView.center = CGPointMake(ScreenW+ScreenW/2, imageView.center.y);
+                    } completion:^(BOOL finished) {
+                        
                     }];
                 }
-                
                 [self animationBlowViewWithXOffPercent:1];
                 [self performSelector:@selector(cardRemove) withObject:imageView afterDelay:Animation_time];
             }
@@ -228,48 +229,35 @@
 }
 //拖动动画
 - (void)animationBlowViewWithXOffPercent:(CGFloat)XOffPercent {
-    [UIView animateWithDuration:Animation_time animations:^{
+    [UIView animateWithDuration:Animation_time delay:0.0 options:UIViewAnimationOptionAllowUserInteraction | UIViewAnimationOptionCurveEaseIn animations:^{
         //确定图片缩放
         for (int i=0; i<self.picture_array.count; i++) {
             UIImageView *imageView=self.picture_array[i];
-            if (imageView!=self.topCard&&i<3) {
+            if (i>0&&i<3) {
                 imageView.center = CGPointMake(ScreenW/2,ScreenH/2
-                                          + (ImageHeight*ImageScale*i/2)
-                                          + ImageSpace*i  //上面3行是原始位置，下面2行是改变的大小
-                                          - XOffPercent*ImageSpace
-                                          - (ImageHeight*ImageScale*i/2)*XOffPercent/i);
-
+                                               + (ImageHeight*ImageScale*i/2)
+                                               + ImageSpace*i  //上面3行是原始位置，下面2行是改变的大小
+                                               - XOffPercent*ImageSpace
+                                               - (ImageHeight*ImageScale*i/2)*XOffPercent/i);
+                
                 CGFloat scale = 1-ImageScale*i + XOffPercent*ImageScale;
                 imageView.transform = CGAffineTransformMakeScale(scale, scale);
             }
         }
-    }];
+    } completion:nil];
 }
 -(void)cardRemove{
-    
-    //滑动结束第一张和放到数组最后
-    [self.picture_array removeObject:self.topCard];
-    [self.picture_array addObject:self.topCard];
-
-    //重新设置tag
-    for (int i = 0 ; i<10; i++) {
-        UIView *card = self.picture_array[i];
-        card.tag = 100+i;
-    }
-    
-    //重置第一张和最后一张（第4）
-//    self.topCard.userInteractionEnabled = NO;
     self.topCard.center = CGPointMake(ScreenW/2, ScreenH/2 + (ImageHeight*ImageScale*2/2) + ImageSpace*2);
     self.topCard.transform = CGAffineTransformMakeScale(1-ImageScale*2, 1-ImageScale*2);
-    
     [self sendSubviewToBack:self.topCard];
-
-    self.bottomCard = self.topCard;
-
-    UIImageView *currentCard = self.picture_array.firstObject;
-//    currentCard.userInteractionEnabled = YES;
-    self.topCard = currentCard;
     
+    //数组内容交换
+    [self.picture_array removeObject:self.topCard];
+    [self.picture_array addObject:self.topCard];
+//    self.topCard.userInteractionEnabled = NO;
+    self.bottomCard = self.topCard;
+//    currentCard.userInteractionEnabled = YES;
+    self.topCard = self.picture_array.firstObject;
 }
 #pragma mark -- 布局
 
