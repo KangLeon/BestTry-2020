@@ -25,7 +25,6 @@
 		0ADF15D3245C10F400594BAE /* 图片3.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF15D0245C10F400594BAE /* 图片3.png */; };
 		0ADF15D4245C10F400594BAE /* 图片4.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF15D1245C10F400594BAE /* 图片4.png */; };
 		0ADF15D6245C10FE00594BAE /* 图片1.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ADF15D5245C10FE00594BAE /* 图片1.png */; };
-		0ADF15F6245C2E5A00594BAE /* GirlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ADF15F5245C2E5A00594BAE /* GirlView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,8 +53,6 @@
 		0ADF15D0245C10F400594BAE /* 图片3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片3.png"; sourceTree = "<group>"; };
 		0ADF15D1245C10F400594BAE /* 图片4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片4.png"; sourceTree = "<group>"; };
 		0ADF15D5245C10FE00594BAE /* 图片1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "图片1.png"; sourceTree = "<group>"; };
-		0ADF15F4245C2E5A00594BAE /* GirlView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GirlView.h; sourceTree = "<group>"; };
-		0ADF15F5245C2E5A00594BAE /* GirlView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GirlView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,8 +102,6 @@
 				0A79DECB245BCE8300103455 /* SceneDelegate.m */,
 				0A79DECD245BCE8300103455 /* ViewController.h */,
 				0A79DECE245BCE8300103455 /* ViewController.m */,
-				0ADF15F4245C2E5A00594BAE /* GirlView.h */,
-				0ADF15F5245C2E5A00594BAE /* GirlView.m */,
 				0A79DEE0245BCECC00103455 /* PanGroupView.h */,
 				0A79DEE1245BCECC00103455 /* PanGroupView.m */,
 				0A79DED0245BCE8300103455 /* Main.storyboard */,
@@ -202,7 +197,6 @@
 				0A79DECF245BCE8300103455 /* ViewController.m in Sources */,
 				0A79DEC9245BCE8300103455 /* AppDelegate.m in Sources */,
 				0A79DEDA245BCE8600103455 /* main.m in Sources */,
-				0ADF15F6245C2E5A00594BAE /* GirlView.m in Sources */,
 				0A79DECC245BCE8300103455 /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
