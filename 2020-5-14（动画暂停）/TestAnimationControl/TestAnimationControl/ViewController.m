@@ -17,6 +17,9 @@
 @property(nonatomic,strong)UIButton *control_button;
 
 @property(nonatomic,assign)BOOL isClose;
+@property(nonatomic,assign)BOOL isAnimation;
+
+@property(nonatomic,strong)dispatch_source_t timer;
 @end
 
 @implementation ViewController
@@ -64,11 +67,7 @@
 }
 
 -(void)tapAction{
-    [CATransaction begin];
-    [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-    [CATransaction setAnimationDuration:10.0];
-    self.progressLayer.strokeEnd =  100.0 / 100.0;
-    [CATransaction commit];
+    [self startGCDTimer];
 }
 
 -(void)controlAction{
@@ -87,6 +86,8 @@
     self.progressLayer.timeOffset = pauseTime;
     //3.将动画的运行速度设置为0， 默认的运行速度是1.0
     self.progressLayer.speed = 0.0;
+    
+    [self pauseTimer];
 }
 
 - (void)resumeAnimation {
@@ -94,10 +95,64 @@
     CFTimeInterval pauseTime = self.progressLayer.timeOffset;
     //2.计算出开始时间
     CFTimeInterval begin = CACurrentMediaTime() - pauseTime;
-
+    
     [self.progressLayer setTimeOffset:0];
     [self.progressLayer setBeginTime:begin];
     self.progressLayer.speed = 1.0;
+    
+    [self resumeTimer];
 }
+
+-(void)startGCDTimer{
+    //先取消一次timer
+//    [self stopTimer];
+    
+    dispatch_source_set_timer(self.timer, 0, 10.0 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    //3.要调用的任务
+    dispatch_source_set_event_handler(self.timer, ^{
+        NSLog(@"GCD-----%@",[NSThread currentThread]);
+        //任务回调
+        if (self.isAnimation) {
+            self.progressLayer.strokeStart =  0.0 / 100.0;
+            self.progressLayer.strokeEnd =  0.0 / 100.0;
+        }else{
+            [CATransaction begin];
+            [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+            [CATransaction setAnimationDuration:10.0];
+            self.progressLayer.strokeEnd =  100.0 / 100.0;
+            [CATransaction commit];
+        }
+        
+        self.isAnimation=!self.isAnimation;
+    });
+    
+    //4.开始执行
+    dispatch_resume(self.timer);
+}
+-(void)pauseTimer{
+    if(self.timer){
+        dispatch_suspend(self.timer);
+    }
+}
+-(void)resumeTimer{
+    if(self.timer){
+        dispatch_resume(self.timer);
+    }
+}
+-(void)stopTimer{
+    if(self.timer){
+        dispatch_source_cancel(self.timer);
+        self.timer = nil;
+    }
+}
+//懒加载定时器
+-(dispatch_source_t )timer{
+    if (!_timer) {
+        dispatch_queue_t queue = dispatch_get_main_queue();
+        _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    }
+    return _timer;
+}
+
 
 @end
