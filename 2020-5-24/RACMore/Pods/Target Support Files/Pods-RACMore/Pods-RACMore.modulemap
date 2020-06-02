@@ -1,0 +1,6 @@
+framework module Pods_RACMore {
+  umbrella header "Pods-RACMore-umbrella.h"
+
+  export *
+  module * { export * }
+}
