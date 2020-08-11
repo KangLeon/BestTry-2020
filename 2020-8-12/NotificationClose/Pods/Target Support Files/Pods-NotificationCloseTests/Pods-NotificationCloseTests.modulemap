@@ -1,0 +1,6 @@
+framework module Pods_NotificationCloseTests {
+  umbrella header "Pods-NotificationCloseTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
